@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	//"net/http"
-	"controllers"
+	"net/http"
 )
 
 func main() {
@@ -12,7 +11,6 @@ func main() {
 
 func server() {
 	fmt.Printf("Server start")
-	fmt.Println(controllers.GetValue())
-	//http.HandleFunc("/", controllers.handlerRequest())
-	//http.ListenAndServe(":8001", nil)
+	http.HandleFunc("/", controllers.handlerRequest())
+	http.ListenAndServe(":8001", nil)
 }

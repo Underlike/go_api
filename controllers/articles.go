@@ -3,7 +3,6 @@ package controllers
 import (
 	"encoding/json"
 	"net/http"
-	"../models"
 )
 
 func handlerRequest(w http.ResponseWriter, r *http.Request) {
