@@ -2,9 +2,13 @@ package main
 
 import (
 	"fmt"
-	"encoding/json"
 	"net/http"
+	"encoding/json"
 	"github.com/Underlike/go_api/models"
+)
+
+const (
+	InfoColor ="\033[1;34m%s\033[0m"
 )
 
 func main() {
@@ -12,7 +16,7 @@ func main() {
 }
 
 func server() {
-	fmt.Printf("Server start")
+	fmt.Printf(InfoColor, "Server start")
 	http.HandleFunc("/", handlerRequest)
 	http.ListenAndServe(":8001", nil)
 }
