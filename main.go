@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"time"
 	"net/http"
 	"github.com/Underlike/go_api/controllers"
 	"github.com/gorilla/mux"
@@ -12,10 +14,22 @@ const (
 )
 
 func main() {
-	fmt.Printf(InfoColor, "Server start on http://localhost:8002")
+	initializeRouter()
+}
 
-	router := mux.NewRouter().StrictSlash(true)
+func initializeRouter() {
+	router := mux.NewRouter()
+
 	router.HandleFunc("/articles", controllers.ArticlesHandler)
 	router.HandleFunc("/categories", controllers.CategoriesHandler)
-	http.ListenAndServe(":8002", router)
+
+	srv := &http.Server{
+        Handler: router,
+        Addr: "127.0.0.1:5002",
+        WriteTimeout: 15 * time.Second,
+        ReadTimeout:  15 * time.Second,
+    }
+
+	fmt.Printf(InfoColor, "Server start on http://localhost:5002")
+	log.Fatal(srv.ListenAndServe())
 }
