@@ -12,11 +12,7 @@ const (
 )
 
 func main() {
-	server()
-}
-
-func server() {
-	fmt.Printf(InfoColor, "Server start")
+	fmt.Printf(InfoColor, "Server start on http://localhost:8001")
 	http.HandleFunc("/", handlerRequest)
 	http.ListenAndServe(":8001", nil)
 }
