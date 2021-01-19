@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"encoding/json"
 	"github.com/Underlike/go_api/models"
+	"github.com/Underlike/go_api/controllers"
+	"github.com/gorilla/mux"
 )
 
 const (
@@ -12,12 +14,15 @@ const (
 )
 
 func main() {
-	fmt.Printf(InfoColor, "Server start on http://localhost:8001")
-	http.HandleFunc("/", handlerRequest)
-	http.ListenAndServe(":8001", nil)
+	fmt.Printf(InfoColor, "Server start on http://localhost:8002")
+
+	router := mux.NewRouter().StrictSlash(true)
+	router.HandleFunc("/articles", controllers.ArticlesHandler)
+	router.HandleFunc("/categories", CategoriesHandler)
+	http.ListenAndServe(":8002", router)
 }
 
-func handlerRequest(w http.ResponseWriter, r *http.Request) {
+func CategoriesHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
-	json.NewEncoder(w).Encode(models.AllsArticles())
+	json.NewEncoder(w).Encode(models.AllsCategories())
 }
