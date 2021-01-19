@@ -6,6 +6,7 @@ import (
 	"time"
 	"net/http"
 	"github.com/Underlike/go_api/controllers"
+	"github.com/Underlike/go_api/config"
 	"github.com/gorilla/mux"
 )
 
@@ -14,6 +15,7 @@ const (
 )
 
 func main() {
+	config.InitializeDatabase()
 	initializeRouter()
 }
 

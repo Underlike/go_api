@@ -10,13 +10,13 @@ const (
 	InfoColor ="\033[1;34m%s\033[0m"
 )
 
-func initializeDatabase() *sql.DB {
-	fmt.Println(InfoColor, "Initialization of database")
+func InitializeDatabase() *sql.DB {
 	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/go")
 
     if err != nil {
         panic(err.Error())
 	}
 	
+	fmt.Printf(InfoColor, "Initialization of database - OK \n")
 	return db
 }
