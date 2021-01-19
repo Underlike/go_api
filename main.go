@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"github.com/Underlike/go_api/controllers"
 )
 
 func main() {
@@ -11,6 +12,7 @@ func main() {
 
 func server() {
 	fmt.Printf("Server start")
-	http.HandleFunc("/", controllers.handlerRequest())
-	http.ListenAndServe(":8001", nil)
+	fmt.Printf(controllers.GetValue())
+	//http.HandleFunc("/", controllers.handlerRequest())
+	//http.ListenAndServe(":8001", nil)
 }
